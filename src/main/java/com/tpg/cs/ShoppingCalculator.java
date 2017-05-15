@@ -7,6 +7,7 @@ import java.util.Map;
 
 import static com.tpg.cs.Product.Apple;
 import static com.tpg.cs.Product.Banana;
+import static com.tpg.cs.Product.Melon;
 
 public class ShoppingCalculator {
 
@@ -15,6 +16,7 @@ public class ShoppingCalculator {
     public ShoppingCalculator() {
         pricingList.put(Apple.name().toLowerCase(), Apple);
         pricingList.put(Banana.name().toLowerCase(), Banana);
+        pricingList.put(Melon.name().toLowerCase(), Melon);
     }
 
     public BigDecimal calculateTotal(List<String> items) {

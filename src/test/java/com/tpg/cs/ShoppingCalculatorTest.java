@@ -29,4 +29,13 @@ public class ShoppingCalculatorTest {
 
         assertThat(actual, is(new BigDecimal(3 * 35 + 2 * 20)));
     }
+
+    @Test
+    public void addingSingleNotOnOfferProductAndBuyOneGetOneFreeProduct_shouldCalculateThePriceTotal() {
+        List<String> items = asList("Apple", "Melon");
+
+        BigDecimal actual = shoppingCalculator.calculateTotal(items);
+
+        assertThat(actual, is(new BigDecimal(35 + 50)));
+    }
 }

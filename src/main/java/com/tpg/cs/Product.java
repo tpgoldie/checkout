@@ -3,7 +3,7 @@ package com.tpg.cs;
 import java.math.BigDecimal;
 
 public enum Product {
-    Apple(35), Banana(20);
+    Apple(35), Banana(20), Melon(50);
 
     private final BigDecimal price;
 
