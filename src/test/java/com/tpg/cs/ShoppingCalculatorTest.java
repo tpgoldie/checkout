@@ -13,11 +13,20 @@ public class ShoppingCalculatorTest {
     private ShoppingCalculator shoppingCalculator = new ShoppingCalculator();
 
     @Test
-    public void addingTwoSingleProductsTogether_twoSingleProducts_shouldCalculateThePriceSum() {
+    public void addingTwoSingleNotOnOfferProductsTogether_shouldCalculateThePriceTotal() {
         List<String> items = asList("Apple", "Banana");
 
         BigDecimal actual = shoppingCalculator.calculateTotal(items);
 
         assertThat(actual, is(new BigDecimal(55)));
+    }
+
+    @Test
+    public void addingTwoMultipleNotOnOfferProductsTogether_shouldCalculateThePriceTotal() {
+        List<String> items = asList("Apple", "Banana", "Apple", "Apple", "Banana");
+
+        BigDecimal actual = shoppingCalculator.calculateTotal(items);
+
+        assertThat(actual, is(new BigDecimal(3 * 35 + 2 * 20)));
     }
 }
