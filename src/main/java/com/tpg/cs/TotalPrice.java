@@ -2,12 +2,12 @@ package com.tpg.cs;
 
 import java.math.BigDecimal;
 
-public abstract class TotalPrice implements Pricing {
+public abstract class TotalPrice implements UnitPricing, TotalCosting {
     private final BigDecimal unitPrice;
 
-    protected int tally = 0;
+    int tally = 0;
 
-    protected TotalPrice(int unitPrice) {
+    TotalPrice(int unitPrice) {
         this.unitPrice = new BigDecimal(unitPrice);
     }
 

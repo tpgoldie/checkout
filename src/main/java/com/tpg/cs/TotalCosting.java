@@ -2,8 +2,6 @@ package com.tpg.cs;
 
 import java.math.BigDecimal;
 
-public interface Pricing {
-    BigDecimal getUnitPrice();
-
+public interface TotalCosting {
     BigDecimal getTotalCost();
 }
