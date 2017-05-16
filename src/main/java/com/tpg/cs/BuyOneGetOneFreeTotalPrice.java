@@ -14,15 +14,10 @@ public class BuyOneGetOneFreeTotalPrice extends TotalPrice {
     }
 
     @Override
-    public BigDecimal getUnitPrice() {
+    public BigDecimal getTotalCost() {
         BigDecimal quotient = new BigDecimal(tally / 2);
         BigDecimal remainder = new BigDecimal(tally % 2);
 
-        return super.getUnitPrice().multiply(quotient).add(remainder);
-    }
-
-    @Override
-    public BigDecimal getTotalCost() {
-        return null;
+        return getUnitPrice().multiply(quotient.add(remainder));
     }
 }
