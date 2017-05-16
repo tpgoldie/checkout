@@ -3,7 +3,6 @@ package com.tpg.cs;
 import java.math.BigDecimal;
 
 public class ThreeForTwoTotalPrice extends TotalPrice {
-    private int tally = 0;
     private int quotient = 0;
     private int remainder = 0;
 

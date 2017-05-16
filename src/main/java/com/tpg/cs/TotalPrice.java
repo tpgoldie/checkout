@@ -5,11 +5,15 @@ import java.math.BigDecimal;
 public abstract class TotalPrice implements Pricing {
     private final BigDecimal unitPrice;
 
+    protected int tally = 0;
+
     protected TotalPrice(int unitPrice) {
         this.unitPrice = new BigDecimal(unitPrice);
     }
 
-    public abstract void add();
+    public void add() {
+        tally++;
+    }
 
     public BigDecimal getUnitPrice() {
         return unitPrice;
