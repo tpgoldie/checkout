@@ -10,6 +10,8 @@ import java.util.stream.LongStream;
 
 import static com.tpg.cs.Product.*;
 import static java.util.Collections.unmodifiableMap;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 public class ShoppingCalculator {
@@ -44,17 +46,17 @@ public class ShoppingCalculator {
     }
 
     public BigDecimal calculateTotal(List<String> items) {
-        List<Product> asProducts = items.stream().map(item -> products.get(item.toLowerCase()))
+        List<Product> asProducts = items.stream()
+                .filter(item -> products.containsKey(item.toLowerCase()))
+                .map(item -> products.get(item.toLowerCase()))
+                    .collect(toList());
+
+        EnumMap<Product, Long> counts = asProducts.stream().collect(groupingBy(
+                product -> product, ()->new EnumMap<>(Product.class), counting()));
+
+        List<BigDecimal> totals = counts.entrySet().stream().map(this::calculateTotalCost)
                 .collect(toList());
 
-//        Map<Product, List<Product>> groupings = asProducts.stream()
-//                .collect(Collectors.groupingBy(product -> product));
-//        groupings.entrySet().stream().map(entry -> entry.setValue(entry.getValue().size()))
-
-        EnumMap<Product, Long> counts = asProducts.stream().collect(Collectors.groupingBy(
-                product -> product, ()->new EnumMap<>(Product.class), Collectors.counting()));
-
-        List<BigDecimal> totals = counts.entrySet().stream().map(entry -> calculateTotalCost(entry)).collect(Collectors.toList());
         return totals.stream().reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -69,9 +71,5 @@ public class ShoppingCalculator {
         }
 
         return totalPrice.getTotalCost();
-    }
-
-    private BigDecimal getPrice(String item) {
-        return pricings.get(products.get(item.toLowerCase())).getTotalCost();
     }
 }

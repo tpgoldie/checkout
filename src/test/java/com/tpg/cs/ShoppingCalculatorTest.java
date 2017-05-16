@@ -30,4 +30,13 @@ public class ShoppingCalculatorTest {
 
         assertThat(actual, is(new BigDecimal(2 * 35 + 2 * 50 + 3 * 20 + 2 * 15)));
     }
+
+    @Test
+    public void calculateTotalCostOfShoppingListWithUndefinedItem_shouldCalculateTheTotalPrice() {
+        List<String> items = asList("Apple", "Melon", "Apple", "Lemon");
+
+        BigDecimal actual = shoppingCalculator.calculateTotal(items);
+
+        assertThat(actual, is(new BigDecimal(2 * 35 + 50 )));
+    }
 }
