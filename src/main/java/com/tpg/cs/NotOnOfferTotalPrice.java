@@ -2,21 +2,20 @@ package com.tpg.cs;
 
 import java.math.BigDecimal;
 
-import static java.math.BigDecimal.ZERO;
-
 public class NotOnOfferTotalPrice extends TotalPrice {
-    private BigDecimal total = ZERO;
+    private int tally = 0;
 
     public NotOnOfferTotalPrice(int value) {
         super(value);
     }
 
+    @Override
     public void add() {
-        total = total.add(super.getUnitPrice());
+        tally++;
     }
 
     @Override
     public BigDecimal getTotalCost() {
-        return total;
+        return getUnitPrice().multiply(new BigDecimal(tally));
     }
 }

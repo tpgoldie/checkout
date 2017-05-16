@@ -9,6 +9,7 @@ public class BuyOneGetOneFreeTotalPrice extends TotalPrice {
         super(value);
     }
 
+    @Override
     public void add() {
         tally++;
     }

@@ -22,20 +22,12 @@ public class ShoppingCalculatorTest {
     }
 
     @Test
-    public void addingTwoMultipleNotOnOfferProductsTogether_shouldCalculateThePriceTotal() {
-        List<String> items = asList("Apple", "Banana", "Apple", "Apple", "Banana");
+    public void calculateTotalCostOfShoppingList_shouldCalculateTheTotalPrice() {
+        List<String> items = asList("Apple", "Melon", "Apple", "Banana", "Melon", "Banana",
+                "Banana", "Melon", "Lime", "Lime", "Melon", "Lime");
 
         BigDecimal actual = shoppingCalculator.calculateTotal(items);
 
-        assertThat(actual, is(new BigDecimal(3 * 35 + 2 * 20)));
-    }
-
-    @Test
-    public void addingSingleNotOnOfferProductAndBuyOneGetOneFreeProduct_shouldCalculateThePriceTotal() {
-        List<String> items = asList("Apple", "Melon");
-
-        BigDecimal actual = shoppingCalculator.calculateTotal(items);
-
-        assertThat(actual, is(new BigDecimal(35 + 50)));
+        assertThat(actual, is(new BigDecimal(2 * 35 + 2 * 50 + 3 * 20 + 2 * 15)));
     }
 }

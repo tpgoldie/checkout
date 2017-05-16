@@ -11,6 +11,7 @@ public class ThreeForTwoTotalPrice extends TotalPrice {
         super(unitPrice);
     }
 
+    @Override
     public void add() {
         tally++;
 

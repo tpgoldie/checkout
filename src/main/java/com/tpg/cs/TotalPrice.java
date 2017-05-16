@@ -9,7 +9,14 @@ public abstract class TotalPrice implements Pricing {
         this.unitPrice = new BigDecimal(unitPrice);
     }
 
+    public abstract void add();
+
     public BigDecimal getUnitPrice() {
         return unitPrice;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%dp", getTotalCost().intValue());
     }
 }
